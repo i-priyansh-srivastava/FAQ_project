@@ -1,0 +1,19 @@
+.faq-list {
+    margin-top: 20px;
+}
+
+.faq-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.faq-list li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.faq-list strong {
+    color: #333;
+}
