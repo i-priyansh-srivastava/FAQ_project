@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FaqList from "./FaqList"
 import "../styles/FaqManagement.css";
 
 function FaqManagement() {
@@ -67,79 +68,85 @@ function FaqManagement() {
   };
 
   return (
-    <div className="FaqContainer">
-      <div className="searchBar">
-        <input type="text" placeholder="Search FAQs..." className="searchInput" />
+    <div>
+      <div className="FaqContainer">
+        <div className="searchBar">
+          <input type="text" placeholder="Search FAQs..." className="searchInput" />
+        </div>
+        <button className="addFaqButton" onClick={() => setShowForm(!showForm)}>
+          {showForm ? "CLOSE" : "ADD NEW FAQ"}
+        </button>
+        {showForm && (
+          <form className="faqForm" onSubmit={handleSubmit}>
+            <div className="faqInputGroup">
+              <label>English Question:</label>
+              <input
+                type="text"
+                name="question_en"
+                placeholder="Enter question in English"
+                value={faqData.question_en}
+                onChange={handleInputChange}
+              />
+              <label>English Answer:</label>
+              <input
+                type="text"
+                name="answer_en"
+                placeholder="Enter answer in English"
+                value={faqData.answer_en}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <button type="button" className="translateButton" onClick={handleTranslate}>
+              Automatically Translate
+            </button>
+
+            <div className="faqInputGroup">
+              <label>Hindi Question:</label>
+              <input
+                type="text"
+                name="question_hi"
+                placeholder="हिंदी में प्रश्न दर्ज करें"
+                value={faqData.question_hi}
+                onChange={handleInputChange}
+              />
+              <label>Hindi Answer:</label>
+              <input
+                type="text"
+                name="answer_hi"
+                placeholder="हिंदी में उत्तर दर्ज करें"
+                value={faqData.answer_hi}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="faqInputGroup">
+              <label>French Question:</label>
+              <input
+                type="text"
+                name="question_fr"
+                placeholder="Entrez la question en français"
+                value={faqData.question_fr}
+                onChange={handleInputChange}
+              />
+              <label>French Answer:</label>
+              <input
+                type="text"
+                name="answer_fr"
+                placeholder="Entrez la réponse en français"
+                value={faqData.answer_fr}
+                onChange={handleInputChange}
+              />
+            </div>
+            <button type="submit" className="submitFaqButton">
+              Submit FAQ
+            </button>
+          </form>
+        )}
       </div>
-      <button className="addFaqButton" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "CLOSE" : "ADD NEW FAQ"}
-      </button>
-      {showForm && (
-        <form className="faqForm" onSubmit={handleSubmit}>
-          <div className="faqInputGroup">
-            <label>English Question:</label>
-            <input
-              type="text"
-              name="question_en"
-              placeholder="Enter question in English"
-              value={faqData.question_en}
-              onChange={handleInputChange}
-            />
-            <label>English Answer:</label>
-            <input
-              type="text"
-              name="answer_en"
-              placeholder="Enter answer in English"
-              value={faqData.answer_en}
-              onChange={handleInputChange}
-            />
-          </div>
 
-          <button type="button" className="translateButton" onClick={handleTranslate}>
-            Automatically Translate
-          </button>
-
-          <div className="faqInputGroup">
-            <label>Hindi Question:</label>
-            <input
-              type="text"
-              name="question_hi"
-              placeholder="हिंदी में प्रश्न दर्ज करें"
-              value={faqData.question_hi}
-              onChange={handleInputChange}
-            />
-            <label>Hindi Answer:</label>
-            <input
-              type="text"
-              name="answer_hi"
-              placeholder="हिंदी में उत्तर दर्ज करें"
-              value={faqData.answer_hi}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="faqInputGroup">
-            <label>French Question:</label>
-            <input
-              type="text"
-              name="question_fr"
-              placeholder="Entrez la question en français"
-              value={faqData.question_fr}
-              onChange={handleInputChange}
-            />
-            <label>French Answer:</label>
-            <input
-              type="text"
-              name="answer_fr"
-              placeholder="Entrez la réponse en français"
-              value={faqData.answer_fr}
-              onChange={handleInputChange}
-            />
-          </div>
-          <button type="submit" className="submitFaqButton">
-            Submit FAQ
-          </button>
-        </form>
-      )}
+      <div className="AllFAQList">
+        <FaqList></FaqList>
+      </div>
     </div>
   );
 }

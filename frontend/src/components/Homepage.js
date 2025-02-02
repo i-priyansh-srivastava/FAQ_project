@@ -1,26 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; 
 import { FaChevronDown } from "react-icons/fa";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../styles/Homepage.css"
-
-const faqs = [
-    {
-        category: "General FAQs",
-        questions: [
-            { question: "Is there a free trial available?", answer: "Yes, a free version is available for you to try!" },
-            { question: "What does the free version include?", answer: "The free version includes basic UI components." },
-            { question: "Do I need to pay for Figma?", answer: "No, Figma offers a free plan with essential features." }
-        ]
-    },
-    {
-        category: "Billing FAQs",
-        questions: [
-            { question: "Is it a one-time payment?", answer: "No, we offer both subscription and one-time payment options." },
-            { question: "What does 'lifetime access' mean?", answer: "Lifetime access means you can use the product indefinitely." }
-        ]
-    }
-];
+import axios from 'axios';
+import "../styles/Homepage.css";
 
 const Homepage = () => {
     const showToast = () => {
@@ -35,16 +18,30 @@ const Homepage = () => {
     };
 
     const [openIndex, setOpenIndex] = useState(null);
+    const [language, setLanguage] = useState("en");
+    const [allFaq, setAllFaq] = useState([]);
 
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/v1/ALLfaqs');
+                setAllFaq(response.data);
+            } 
+            catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <div className="faq-container">
             <nav className="HomeNavbar">
                 <h1 className="logo">Bharat FD</h1>
-
                 <button className="get-started">Get Started</button>
             </nav>
 
@@ -58,36 +55,30 @@ const Homepage = () => {
             </header>
 
             <div className="FAQ-multilingual">
-                <select className="language-select" >
+                <select 
+                    className="language-select" 
+                    value={language} 
+                    onChange={(e) => setLanguage(e.target.value)}
+                >
                     <option value="en">English</option>
                     <option value="hi">हिन्दी (Hindi)</option>
                     <option value="fr">Français (French)</option>
-                    <option value="bn">বাংলা (Bengali)</option>
                 </select>
-
             </div>
 
             <div className="faq-wrapper">
-                {faqs.map((faqCategory, index) => (
-                    <div key={index} className="faq-section">
-                        <h3 className="faq-category">{faqCategory.category}</h3>
-                        <div className="faq-box">
-                            {faqCategory.questions.map((faq, i) => {
-                                const currentIndex = `${index}-${i}`;
-                                return (
-                                    <div key={currentIndex} className="faq-item">
-                                        <button onClick={() => toggleFAQ(currentIndex)} className="faq-question">
-                                            {faq.question}
-                                            <FaChevronDown className={`icon ${openIndex === currentIndex ? 'rotate' : ''}`} />
-                                        </button>
-                                        {openIndex === currentIndex && <p className="faq-answer">{faq.answer}</p>}
-                                    </div>
-                                );
-                            })}
-                        </div>
+                {allFaq.map((faq, i) => (
+                    <div key={i} className="faq-item">
+                        <button onClick={() => toggleFAQ(i)} className="faq-question">
+                            {faq[`question_${language}`]}
+                            <FaChevronDown className={`icon ${openIndex === i ? 'rotate' : ''}`} />
+                        </button>
+                        {openIndex === i && <p className="faq-answer">{faq[`answer_${language}`]}</p>} 
                     </div>
                 ))}
             </div>
+
+            <ToastContainer />
         </div>
     );
 };

@@ -1,19 +1,123 @@
-.faq-list {
-    margin-top: 20px;
-}
-
-.faq-list ul {
-    list-style-type: none;
+* {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-.faq-list li {
+.faq-list {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     background-color: #f9f9f9;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
-.faq-list strong {
+h3 {
+    font-size: 24px;
     color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    background-color: #fff;
+}
+
+button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:focus {
+    outline: none;
+}
+
+.editBtn:nth-of-type(1) {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delBtn:nth-of-type(2) {
+    background-color: #f44336;
+    color: white;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
+
+@media (max-width: 768px) {
+    .faq-list {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h3 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+    button {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
 }
