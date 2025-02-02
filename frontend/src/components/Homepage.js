@@ -1,3 +1,5 @@
+import React from "react";
+import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react"; 
 import { FaChevronDown } from "react-icons/fa";
 import { toast, ToastContainer } from 'react-toastify';
@@ -70,10 +72,10 @@ const Homepage = () => {
                 {allFaq.map((faq, i) => (
                     <div key={i} className="faq-item">
                         <button onClick={() => toggleFAQ(i)} className="faq-question">
-                            {faq[`question_${language}`]}
+                        <ReactMarkdown>{faq[`question_${language}`]}</ReactMarkdown>
                             <FaChevronDown className={`icon ${openIndex === i ? 'rotate' : ''}`} />
                         </button>
-                        {openIndex === i && <p className="faq-answer">{faq[`answer_${language}`]}</p>} 
+                        {openIndex === i && <p className="faq-answer"><ReactMarkdown>{faq[`answer_${language}`]}</ReactMarkdown></p>} 
                     </div>
                 ))}
             </div>

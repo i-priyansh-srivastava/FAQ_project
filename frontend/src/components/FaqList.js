@@ -3,6 +3,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import '../styles/FaqList.css';
+import ReactMarkdown from "react-markdown";
 
 function FaqList() {
   const [faqs, setFaqs] = useState([]);
@@ -66,8 +67,8 @@ function FaqList() {
           <tbody>
             {faqs.map((faq) => (
               <tr key={faq.id}>
-                <td>{faq.question}</td>
-                <td>{faq.answer}</td>
+                <td><ReactMarkdown>{faq.question}</ReactMarkdown></td>
+                <td><ReactMarkdown>{faq.answer}</ReactMarkdown></td>
                 <td>
                   <button className="editBtn" onClick={() => handleEdit(faq.id)}>Edit</button>
                   <button className="delBtn" onClick={() => handleDelete(faq.id)}>Delete</button>

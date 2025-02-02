@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FaqList from "./FaqList"
+import FaqList from "./FaqList";
+import MarkdownEditor from "react-markdown-editor-lite";
+import "react-markdown-editor-lite/lib/index.css";
+import ReactMarkdown from 'react-markdown';
+
 import "../styles/FaqManagement.css";
 
 function FaqManagement() {
   const [showForm, setShowForm] = useState(false);
+  const [description, setdescription] = useState('');
   const [faqData, setFaqData] = useState({
     question_en: "",
     answer_en: "",
@@ -16,6 +21,10 @@ function FaqManagement() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setFaqData({ ...faqData, [name]: value });
+  };
+
+  const handleMarkdownChange = (value, name) => {
     setFaqData({ ...faqData, [name]: value });
   };
 
@@ -88,12 +97,49 @@ function FaqManagement() {
                 onChange={handleInputChange}
               />
               <label>English Answer:</label>
-              <input
-                type="text"
-                name="answer_en"
-                placeholder="Enter answer in English"
+              {/* <MarkdownEditor
                 value={faqData.answer_en}
-                onChange={handleInputChange}
+                onChange={({ text }) => handleMarkdownChange(text, "answer_en")}
+                style={{ height: "200px" }}
+              /> */}
+              <MarkdownEditor
+                value={description}
+                onChange={(ev) => setdescription(ev.text)}
+                style={{
+                  width: "100%",
+                  height: "400px"
+                }}
+
+                renderHTML={(text) => (
+                  <ReactMarkdown components={{
+                    code: ({ node, inline, className, children, ...props }) => {
+                      const match = /language-(\w+)/.exec(className || '');
+
+                      if (inline) {
+                        return <code>{children}</code>
+                      } else if (match) {
+                        return (
+                          <div style={{ position: 'relative' }}>
+                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
+                              <code>
+                                {children}
+                              </code>
+                            </pre>
+
+                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
+                              Copy Code
+                            </button>
+                          </div>
+                        )
+                      } else {
+                        return <code {...props}>{children}</code>
+                      }
+                    }
+                  }}>
+                    {text}
+
+                  </ReactMarkdown>
+                )}
               />
             </div>
 
@@ -111,14 +157,48 @@ function FaqManagement() {
                 onChange={handleInputChange}
               />
               <label>Hindi Answer:</label>
-              <input
-                type="text"
-                name="answer_hi"
-                placeholder="हिंदी में उत्तर दर्ज करें"
-                value={faqData.answer_hi}
-                onChange={handleInputChange}
+
+              <MarkdownEditor
+                value={description}
+                onChange={(ev) => setdescription(ev.text)}
+                style={{
+                  width: "100%",
+                  height: "400px"
+                }}
+
+                renderHTML={(text) => (
+                  <ReactMarkdown components={{
+                    code: ({ node, inline, className, children, ...props }) => {
+                      const match = /language-(\w+)/.exec(className || '');
+
+                      if (inline) {
+                        return <code>{children}</code>
+                      } else if (match) {
+                        return (
+                          <div style={{ position: 'relative' }}>
+                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
+                              <code>
+                                {children}
+                              </code>
+                            </pre>
+
+                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
+                              Copy Code
+                            </button>
+                          </div>
+                        )
+                      } else {
+                        return <code {...props}>{children}</code>
+                      }
+                    }
+                  }}>
+                    {text}
+
+                  </ReactMarkdown>
+                )}
               />
             </div>
+
             <div className="faqInputGroup">
               <label>French Question:</label>
               <input
@@ -129,14 +209,48 @@ function FaqManagement() {
                 onChange={handleInputChange}
               />
               <label>French Answer:</label>
-              <input
-                type="text"
-                name="answer_fr"
-                placeholder="Entrez la réponse en français"
-                value={faqData.answer_fr}
-                onChange={handleInputChange}
+
+              <MarkdownEditor
+                value={description}
+                onChange={(ev) => setdescription(ev.text)}
+                style={{
+                  width: "100%",
+                  height: "400px"
+                }}
+
+                renderHTML={(text) => (
+                  <ReactMarkdown components={{
+                    code: ({ node, inline, className, children, ...props }) => {
+                      const match = /language-(\w+)/.exec(className || '');
+
+                      if (inline) {
+                        return <code>{children}</code>
+                      } else if (match) {
+                        return (
+                          <div style={{ position: 'relative' }}>
+                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
+                              <code>
+                                {children}
+                              </code>
+                            </pre>
+
+                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
+                              Copy Code
+                            </button>
+                          </div>
+                        )
+                      } else {
+                        return <code {...props}>{children}</code>
+                      }
+                    }
+                  }}>
+                    {text}
+
+                  </ReactMarkdown>
+                )}
               />
             </div>
+
             <button type="submit" className="submitFaqButton">
               Submit FAQ
             </button>
