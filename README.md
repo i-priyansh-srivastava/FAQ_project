@@ -10,11 +10,10 @@ A simple and dynamic FAQ page that provides multilingual support with automatic 
 - **Dynamic Content**: Frequently asked questions are fetched from a MongoDB database.
 - **Error Handling**: Displays error messages in case of failed API calls or server issues.
 
-![Feature Image 1](./images/client1.png){: width="400" height="300"}
-![Feature Image 2](./images/client2.png){: width="400" height="300"}
-![Feature Image 3](./images/admin1.png){: width="400" height="300"}
-![Feature Image 4](./images/admin2.png){: width="400" height="300"}
-
+![Feature Image 1](./images/client1.png)
+![Feature Image 2](./images/client2.png)
+![Feature Image 3](./images/admin1.png)
+![Feature Image 4](./images/admin2.png)
 ## Tech Stack
 
 - **Frontend**: React.js
@@ -43,3 +42,12 @@ Redis is used to cache the translations for quicker response times on repeated r
 - **GOOGLE_TRANSLATE_API_KEY**: Your API key for Google Translate.
 - **REDIS_URL**: The URL for your Redis instance.
 - **REDIS_PASSWORD**: The password for your Redis instance.
+
+## Access the Website
+
+To access the client-side website, use the following URL:
+[http://localhost/](http://localhost/)
+
+
+To access the admin panel, use the following URL:
+[http://localhost/admin](http://localhost/admin)
