@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faUserMd, faClipboardList, faFileAlt, faBell, faAmbulance, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import FaqManagement from "./FaqManagement";
 import "../styles/AdminPortal.css";

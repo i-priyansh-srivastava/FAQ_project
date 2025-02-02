@@ -1,48 +1,147 @@
-.faq-management {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+/* FaqManagement.css */
+
+/* General Styles */
+.FaqContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.faq-management h1{
-    align-self: center;
+.searchBar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.search-section {
-    margin-bottom: 20px;
+.searchInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
-.search-section input {
-    padding: 8px;
-    width: 80%;
-    margin-right: 10px;
+.addFaqButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
-.search-section button {
-    padding: 8px;
+.addFaqButton:hover {
+  background-color: #0056b3;
 }
 
-.add-faq textarea {
-    width: 100%;
-    height: 100px;
-    margin-bottom: 10px;
+.faqForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5vh;
 }
 
-.add-faq button {
-    padding: 8px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+.faqInputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqInputGroup label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.faqInputGroup input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.translateButton {
+  padding: 10px 20px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+}
+
+.submitFaqButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.translateButton:hover,
+.submitFaqButton:hover {
+  background-color: #218838;
 }
 
 @media (max-width: 768px) {
-    .faq-management {
-        margin-left: 0;
-    }
 
-    .search-section input,
-    .search-section button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+  /* For mobile screens */
+  .FaqContainer {
+    padding: 10px;
+  }
+
+  .searchInput {
+    font-size: 0.9rem;
+  }
+
+  .addFaqButton {
+    padding: 8px 15px;
+  }
+
+  .faqForm {
+    gap: 10px;
+  }
+
+  .faqInputGroup input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .translateButton,
+  .submitFaqButton {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .faqInputGroup label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* For very small screens */
+  .faqInputGroup input {
+    font-size: 0.85rem;
+    padding: 7px;
+  }
+
+  .searchInput {
+    font-size: 0.85rem;
+  }
+
+  .translateButton,
+  .submitFaqButton {
+    font-size: 0.85rem;
+    padding: 7px 12px;
+  }
+
+  .faqInputGroup label {
+    font-size: 0.85rem;
+  }
+
+  .addFaqButton {
+    padding: 6px 12px;
+  }
 }
