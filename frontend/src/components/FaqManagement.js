@@ -103,45 +103,10 @@ function FaqManagement() {
                 style={{ height: "200px" }}
               /> */}
               <MarkdownEditor
-                value={description}
-                onChange={(ev) => setdescription(ev.text)}
-                style={{
-                  width: "100%",
-                  height: "400px"
-                }}
-
-                renderHTML={(text) => (
-                  <ReactMarkdown components={{
-                    code: ({ node, inline, className, children, ...props }) => {
-                      const match = /language-(\w+)/.exec(className || '');
-
-                      if (inline) {
-                        return <code>{children}</code>
-                      } else if (match) {
-                        return (
-                          <div style={{ position: 'relative' }}>
-                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
-                              <code>
-                                {children}
-                              </code>
-                            </pre>
-
-                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
-                              Copy Code
-                            </button>
-                          </div>
-                        )
-                      } else {
-                        return <code {...props}>{children}</code>
-                      }
-                    }
-                  }}>
-                    {text}
-
-                  </ReactMarkdown>
-                )}
-              />
-            </div>
+                value={faqData.answer_en}
+                onChange={({ text }) => handleMarkdownChange(text, "answer_en")}
+                style={{ width: "100%", height: "200px" }}
+              />            </div>
 
             <button type="button" className="translateButton" onClick={handleTranslate}>
               Automatically Translate
@@ -159,43 +124,9 @@ function FaqManagement() {
               <label>Hindi Answer:</label>
 
               <MarkdownEditor
-                value={description}
-                onChange={(ev) => setdescription(ev.text)}
-                style={{
-                  width: "100%",
-                  height: "400px"
-                }}
-
-                renderHTML={(text) => (
-                  <ReactMarkdown components={{
-                    code: ({ node, inline, className, children, ...props }) => {
-                      const match = /language-(\w+)/.exec(className || '');
-
-                      if (inline) {
-                        return <code>{children}</code>
-                      } else if (match) {
-                        return (
-                          <div style={{ position: 'relative' }}>
-                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
-                              <code>
-                                {children}
-                              </code>
-                            </pre>
-
-                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
-                              Copy Code
-                            </button>
-                          </div>
-                        )
-                      } else {
-                        return <code {...props}>{children}</code>
-                      }
-                    }
-                  }}>
-                    {text}
-
-                  </ReactMarkdown>
-                )}
+                value={faqData.answer_hi}
+                onChange={({ text }) => handleMarkdownChange(text, "answer_hi")}
+                style={{ width: "100%", height: "200px" }}
               />
             </div>
 
@@ -211,43 +142,9 @@ function FaqManagement() {
               <label>French Answer:</label>
 
               <MarkdownEditor
-                value={description}
-                onChange={(ev) => setdescription(ev.text)}
-                style={{
-                  width: "100%",
-                  height: "400px"
-                }}
-
-                renderHTML={(text) => (
-                  <ReactMarkdown components={{
-                    code: ({ node, inline, className, children, ...props }) => {
-                      const match = /language-(\w+)/.exec(className || '');
-
-                      if (inline) {
-                        return <code>{children}</code>
-                      } else if (match) {
-                        return (
-                          <div style={{ position: 'relative' }}>
-                            <pre style={{ padding: '0', borderRadius: '5px', overflowX: 'auto', whiteSpace: 'pre-wrap' }} {...props}>
-                              <code>
-                                {children}
-                              </code>
-                            </pre>
-
-                            <button style={{ position: "absolute", top: "0", right: '0', zIndex: "1" }} onClick={() => navigator.clipboard.writeText(children)}>
-                              Copy Code
-                            </button>
-                          </div>
-                        )
-                      } else {
-                        return <code {...props}>{children}</code>
-                      }
-                    }
-                  }}>
-                    {text}
-
-                  </ReactMarkdown>
-                )}
+                value={faqData.answer_fr}
+                onChange={({ text }) => handleMarkdownChange(text, "answer_fr")}
+                style={{ width: "100%", height: "200px" }}
               />
             </div>
 
